@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Identity Puzzle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #111;
+      color: white;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      flex-grow: 1;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    #canvas-holder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    canvas {
+      border: 1px solid #333;
+    }
+
+    #controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 12px;
+      max-width: 800px;
+    }
+
+    #controls section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <main id="app">
+    <div id="canvas-holder"></div>
+    <div id="controls">
+      <!-- Image Source -->
+      <section>
+        <label>Source:</label>
+        <label><input type="radio" name="source" id="uploadRadio" value="upload" checked> Upload</label>
+        <label><input type="radio" name="source" id="webcamRadio" value="webcam"> Webcam</label>
+        <input type="file" id="imageInput" accept="image/*" />
+      </section>
+
+      <!-- Dithering & Tile Controls -->
+      <section>
+        <label>Dither Type</label>
+        <select id="ditherMode">
+          <option value="atkinson">Atkinson</option>
+          <option value="bayer">Ordered Bayer (8×8)</option>
+        </select>
+
+        <label>Contrast</label>
+        <input type="range" id="contrastSlider" min="0" max="255" value="128" />
+
+        <label>Pixel Size (averaging)</label>
+        <input type="range" id="pixelSizeSlider" min="1" max="10" value="1" />
+
+        <label>Tile Size Multiplier</label>
+        <input type="range" id="tileSizeSlider" min="1" max="8" value="2" />
+        <button id="shuffleBtn">Shuffle Tiles</button>
+        <button id="downloadBtn">Download High-Res Output</button>
+
+      </section>      
+    </div>
+  </main>
+
+  <!-- p5.js -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
