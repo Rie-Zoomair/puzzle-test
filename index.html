@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Identity Tile Tool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ui-panel">
+    <div class="ui-section">
+      <label>Source</label>
+      <div class="toggle-group">
+        <button id="uploadRadio" class="btn active">Upload</button>
+        <button id="webcamRadio" class="btn">Webcam</button>
+      </div>
+      <label for="imageInput" class="file-label">Choose File</label>
+      <input type="file" id="imageInput" accept="image/*">
+    </div>
+
+    <div class="ui-section">
+      <label>Dither Type</label>
+      <div class="select-wrapper">
+        <select id="ditherMode">
+          <option value="atkinson">Atkinson</option>
+          <option value="bayer">Bayer</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="ui-section">
+      <label>Contrast</label>
+      <input type="range" id="contrastSlider" min="0" max="255" value="128">
+    </div>
+
+    <div class="ui-section">
+      <label>Pixel Size</label>
+      <input type="range" id="pixelSizeSlider" min="1" max="20" value="1">
+    </div>
+
+    <div class="ui-section">
+      <label>Tile Size</label>
+      <input type="range" id="tileSizeSlider" min="1" max="10" value="4">
+    </div>
+
+    <div class="ui-section">
+      <button id="shuffleBtn" class="btn">Shuffle Tiles</button>
+      <button id="downloadBtn" class="btn">Download</button>
+    </div>
+  </div>
+
+  <div id="canvas-holder"></div>
+
+  <div class="tooltip-container" id="globalTooltip">
+    <div class="tooltip-icon" id="tooltipIcon">?</div>
+    <div class="tooltip-text">
+      <strong>Shortcuts & Tips</strong><br /><br />
+      <b>W</b> – Toggle tile selection outlines<br />
+      <b>Space</b> – Shuffle selected tiles<br />
+      <b>S</b> – Save high-res image<br />
+      <b>Shift + Drag</b> – Select multiple tiles<br />
+      <b>Click + Drag</b> – Move individual tiles<br />
+      <b>Backspace</b> – Reset tile layout (coming soon)<br />
+      <b>I</b> – Invert tile selection (coming soon)
+    </div>
+  </div>
+  
+  
+
+  <div class="footer">
+    This tool lets you rearrange tiles of a dithered image or webcam feed. Select tiles to shuffle or drag them freely. Desktop only. Uploads >1000px might slow things down.
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="sketch.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tooltipIcon = document.getElementById('tooltipIcon');
+  
+      tooltipIcon.addEventListener('mouseenter', () => {
+        tooltipIcon.classList.add('seen-tooltip');
+      });
+    });
+  </script>
+    
+  
+</body>
+</html>

@@ -1,0 +1,254 @@
+:root {
+  /* 8pt grid spacing system */
+  --space-1x: 8px;
+  --space-2x: 16px;
+  --space-3x: 24px;
+  --space-4x: 32px;
+  --space-5x: 40px;
+  --space-6x: 48px;
+  --space-7x: 56px;
+  --space-8x: 64px;
+  --space-9x: 72px;
+  --space-15x: 120px; /* Custom left spacing for .ui-panel */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0a0a0a;
+  color: #fff;
+  overflow: hidden;
+}
+
+#canvas-holder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui-panel {
+  position: absolute;
+  top: 50%;
+  left: var(--space-15x);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2x);
+  width: 240px;
+  color: white;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.ui-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1x);
+}
+
+/* Button Styles */
+.btn,
+.file-label,
+.select-wrapper {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: var(--space-1x) var(--space-2x);
+  border-radius: 24px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn:hover,
+.file-label:hover {
+  background: white;
+  color: black;
+}
+
+.btn.active {
+  background: white;
+  color: black;
+}
+
+.btn.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Toggle Button Group */
+.toggle-group {
+  display: flex;
+  gap: var(--space-1x);
+}
+
+/* Range Sliders */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 2px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: black;
+  border: 2px solid white;
+  border-radius: 50%;
+  margin-top: -7px; /* Center the thumb */
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-track {
+  height: 2px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 2px;
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: black;
+  border: 2px solid white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Custom Dropdown Lookalike */
+.select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-wrapper select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: white;
+  width: 100%;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 2;
+  padding-right: var(--space-2x);
+}
+
+.select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: var(--space-2x);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+/* File input hidden */
+input[type="file"] {
+  display: none;
+}
+
+/* Footer Text */
+.footer {
+  position: absolute;
+  bottom: var(--space-2x);
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+y.shortcut-help {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+}
+
+.tooltip-container {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.tooltip-icon {
+  background-color: #f1f1f1;
+  color: #1a1a1a;
+  font-weight: bold;
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  line-height: 28px;
+  cursor: default;
+  font-size: 16px;
+  border: 1px solid #1a1a1a;
+
+  animation: ping-rotate 12s infinite;
+  transform-origin: center;
+}
+
+.tooltip-icon.seen-tooltip {
+  animation: none !important;
+}
+
+@keyframes ping-rotate {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  2%   { transform: scale(1.1) rotate(-2deg); opacity: 0.9; }
+  4%   { transform: scale(1.1) rotate(2deg); }
+  6%   { transform: scale(1.1) rotate(-1deg); }
+  8%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+
+.tooltip-text {
+  display: none;
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+  border: 1px solid #f1f1f1;
+  border-radius: 8px;
+  padding: 12px 16px;
+  width: 260px;
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.tooltip-container:hover .tooltip-text {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
